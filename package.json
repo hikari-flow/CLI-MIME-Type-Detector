@@ -1,0 +1,11 @@
+{
+  "name": "kld_sample_app",
+  "version": "1.0.0",
+  "description": "For software engineer job application",
+  "main": "index.js",
+  "author": "Austin Tran",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
