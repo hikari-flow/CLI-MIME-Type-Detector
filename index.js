@@ -14,7 +14,6 @@ let inputValues = {};
 main();
 
 async function main() {
-
     initInputValues();
 
     // If user passsed arguments
@@ -27,7 +26,7 @@ async function main() {
         }
 
         // Parse args into inputValues
-        for (const inputId of Object.keys(cli.template)) {
+        for (const inputId in cli.template) {
             if (!userInput.length) {
                 break;
             }
@@ -44,7 +43,7 @@ async function main() {
         }
 
         // Validation
-        for (const inputId of Object.keys(cli.template)) {
+        for (const inputId in cli.template) {
             let argValid = false;
 
             if (!inputValues[inputId].value == '') {
@@ -61,7 +60,7 @@ async function main() {
             }
         }
     } else {
-        for (const inputId of Object.keys(cli.template)) {
+        for (const inputId in cli.template) {
             await getUserInput({ inputId });
         }
     }
@@ -77,12 +76,12 @@ async function main() {
 }
 
 function initInputValues() {
-    for (const inputId of Object.keys(cli.template)) {
-        let inputObj = {};
-        inputObj[inputId] = {};
-        inputObj[inputId].value = '';
-        inputObj[inputId].flags = [];
-        Object.assign(inputValues, inputObj);
+    inputValues = {};
+
+    for (const inputId in cli.template) {
+        inputValues[inputId] = {};
+        inputValues[inputId].value = '';
+        inputValues[inputId].flags = [];
     }
 }
 

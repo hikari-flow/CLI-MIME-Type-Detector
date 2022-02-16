@@ -14,30 +14,10 @@ let mns = []; // Magic Numbers as an ASCII string
 let exts = [];
 
 exports.detect = function ({ filePath }) {
-    loadFiletypes();
-
-    const filetype = detectType({ data: fs.readFileSync(filePath) });
-
-    return filetype;
-}
-
-function loadFiletypes() {
-    const data = fs.readFileSync('file.types', 'utf8');
-
-    let lines = data.split('\n');
-
-    for (let i = 0; i < lines.length; i++) {
-        let split = lines[i].split(':');
-
-        if (split[0] != '') {
-            exts.push(split[0]);
-            mns.push(split[1]);
-        }
-    }
-}
-
-function detectType({ data }) {
+    let data = fs.readFileSync(filePath);
     let type = 'Unknown';
+
+    loadFiletypes();
 
     for (let i = 0; i < mns.length; i++) {
         let file_mn = '';
@@ -54,4 +34,19 @@ function detectType({ data }) {
     }
 
     return type;
+}
+
+function loadFiletypes() {
+    const data = fs.readFileSync('file.types', 'utf8');
+
+    let lines = data.split('\n');
+
+    for (let i = 0; i < lines.length; i++) {
+        const split = lines[i].split(':');
+
+        if (split[0] != '') {
+            exts.push(split[0]);
+            mns.push(split[1]);
+        }
+    }
 }
