@@ -11,7 +11,7 @@ const cli = require('./cli-controller.js');
 const magicNum = require('./magic-number.js');
 
 exports.generateCsv = async function ({ inputPath, flags, outputPath }) {
-    const acceptedFiletypes = ['jpeg', 'pdf']
+    const acceptedFiletypes = new Set(['jpeg', 'pdf']);
 
     // If user pointed to a directory instead of a file for outputPath, create an output.csv file
     if (fs.statSync(outputPath).isDirectory()) {
@@ -28,7 +28,7 @@ exports.generateCsv = async function ({ inputPath, flags, outputPath }) {
     for (const filePath of fileList) {
         let filetype = magicNum.detect({ filePath });
 
-        if (acceptedFiletypes.includes(filetype)) {
+        if (acceptedFiletypes.has(filetype)) {
             let md5 = '';
 
             try {

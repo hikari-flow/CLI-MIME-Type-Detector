@@ -140,14 +140,14 @@ exports.parseOneArg = function ({ userInput, inputId }) {
     inputObj[inputId].value = exports.template[inputId].normalize({ userInput: userInput[0] });
     inputObj[inputId].flags = [];
 
-    userInput.splice(0, 1);
+    userInput.shift();
 
     // Grab flags
     let isFlag = true;
     while (isFlag === true) {
         if (userInput.length && userInput[0][0] == '-') {
             inputObj[inputId].flags.push(userInput[0]);
-            userInput.splice(0, 1);
+            userInput.shift();
         } else {
             isFlag = false;
         }
