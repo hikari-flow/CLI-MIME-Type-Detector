@@ -9,16 +9,13 @@
 // Dependencies
 const fs = require('fs');
 
-// Global variables
-
-
 exports.detect = function ({ filePath }) {
     let mns = []; // Magic Numbers as an ASCII string
     let exts = [];
     let data = fs.readFileSync(filePath);
     let type = 'Unknown';
 
-    loadFiletypes();
+    loadFiletypes(mns, exts);
 
     for (let i = 0; i < mns.length; i++) {
         let file_mn = '';
@@ -37,7 +34,7 @@ exports.detect = function ({ filePath }) {
     return type;
 }
 
-function loadFiletypes() {
+function loadFiletypes(mns, exts) {
     const data = fs.readFileSync('file.types', 'utf8');
 
     let lines = data.split('\n');
