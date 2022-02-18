@@ -10,10 +10,11 @@
 const fs = require('fs');
 
 // Global variables
-let mns = []; // Magic Numbers as an ASCII string
-let exts = [];
+
 
 exports.detect = function ({ filePath }) {
+    let mns = []; // Magic Numbers as an ASCII string
+    let exts = [];
     let data = fs.readFileSync(filePath);
     let type = 'Unknown';
 
