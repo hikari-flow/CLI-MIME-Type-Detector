@@ -1,9 +1,9 @@
 "use strict";
 
 /**
- * 
+ *
  * https://www.garykessler.net/library/file_sigs.html
- * 
+ *
 **/
 
 // Dependencies
@@ -44,7 +44,7 @@ function loadFiletypes(mns, exts) {
 
         if (split[0] != '') {
             exts.push(split[0]);
-            mns.push(split[1]);
+            mns.push(split[1].trimEnd());
         }
     }
 }
